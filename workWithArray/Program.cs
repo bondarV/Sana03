@@ -2,7 +2,16 @@
 
 internal class Program
 {
-    private static void Main(string[] args)
+    private static void randomGenerationArray(int[] array,int firstLimit,int secondLimit)
+    {
+        Random rnd = new Random();
+        for (int i = 0; i < array.Length; i++)
+        {
+            array[i] = rnd.Next(firstLimit, secondLimit + 1);
+            Console.WriteLine($"array{i} = {array[i]}");
+        }
+    }
+      private static void Main(string[] args)
     {
         Console.OutputEncoding = Encoding.Unicode;
         Console.InputEncoding = Encoding.Unicode;
@@ -10,7 +19,6 @@ internal class Program
         bool checkN, checkA, checkB;
         short N;
         int a, b;
-        Random rnd = new Random();
 
         Console.WriteLine("Введіть розмір масиву(N):");
         do
@@ -32,13 +40,7 @@ internal class Program
             checkB = int.TryParse(Console.ReadLine(), out b);
             if (!checkB || b < 0 || b < a) Console.WriteLine("Перевірте чи коректно задано значення b [a;b]");
         } while (!checkA || b < 0 || b < a);
-
         int[] array = new int[N];
-
-        for (int i = 0; i < array.Length; i++)
-        {
-            array[i] = rnd.Next(a, b + 1);
-            Console.WriteLine($"array{i} = {array[i]}");
-        }
+        randomGenerationArray(array, a, b);
     }
 }
