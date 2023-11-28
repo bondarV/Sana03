@@ -3,7 +3,7 @@ using System.Text;
 internal class Program
 {
 
-    private static void randomGenerationArray(double[] array, int firstLimit, int secondLimit)
+    private static void RandomGenerationArray(double[] array, int firstLimit, int secondLimit)
     {
         Random rnd = new Random();
         for (int i = 0; i < array.Length; i++)
@@ -43,7 +43,7 @@ internal class Program
         } while (!checkA || b <= a);
 
         double[] array = new double[N];
-        randomGenerationArray(array, a, b);
+        RandomGenerationArray(array, a, b);
 
         double minElement = array[0];
         double maxElement = array[0];
