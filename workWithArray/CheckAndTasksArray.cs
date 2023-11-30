@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -22,7 +23,8 @@ namespace workWithArray
             return N;
         }
 
-        public static int CheckArrayFirstLimit() {
+        public static int CheckArrayFirstLimit()
+        {
             bool checkA;
             int a;
             Console.WriteLine("Введіть розмір границі діапазону a - [a;b]");
@@ -44,6 +46,61 @@ namespace workWithArray
                 if (!checkB || b <= a) Console.WriteLine("Перевірте чи коректно задано значення b [a;b]");
             } while (!checkB || b <= a);
             return b;
+        }
+        public static double SumNegativeNumbers(double[] array)
+        {
+            double sum = 0;
+            for (int i = 0; i < array.Length; i++)
+                if (array[i] < 0) sum += array[i];
+            return sum;
+        }
+        public static double MinElementOfArray(double[] array)
+        {
+            double minElement = array[0];
+            for (int i = 0; i < array.Length; i++)
+                if (array[i] < minElement) minElement = array[i];
+            return minElement;
+        }
+        public static int MaxElementIndex(double[] array)
+        {
+            int maxIndexOfElement = 0;
+            double maxElement = array[0];
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (array[i] > maxElement)
+                {
+                    maxElement = array[i];
+                    maxIndexOfElement = i;
+                }
+            }
+            return maxIndexOfElement;
+        }
+        public static double MaxByModuleElement(double[] array)
+        {
+            double maxByModuleElement = array[0];
+
+            for (int i = 0; i < array.Length; i++)
+                if (Math.Abs(array[i]) > Math.Abs(maxByModuleElement)) maxByModuleElement = Math.Abs(array[i]);
+
+            return maxByModuleElement;
+        }
+        public static int SumIndexPositiveElements(double[] array)
+        {
+            int sum = 0;
+            for (int i = 0; i < array.Length; i++)
+                if (array[i] > 0) sum += i;
+            return sum;
+        }
+        public static int CountIntegerNumbers(double[] array)
+        {
+            int count = 0;
+            int i = 0;
+            while (i < array.Length)
+            {
+                if (array[i] == Math.Round(array[i])) count++;
+                i++;
+            }
+            return count;
         }
     }
 }

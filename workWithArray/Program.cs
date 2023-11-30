@@ -11,41 +11,20 @@ internal class Program
         Console.OutputEncoding = Encoding.Unicode;
         Console.InputEncoding = Encoding.Unicode;
 
-        var N = workWithArray.CheckAndTasksArray.CheckSizeOfArray();
-        var a = workWithArray.CheckAndTasksArray.CheckArrayFirstLimit();
-        var b = workWithArray.CheckAndTasksArray.CheckArraySecondLimit(a);
+        var N = CheckAndTasksArray.CheckSizeOfArray();
+        var a = CheckAndTasksArray.CheckArrayFirstLimit();
+        var b = CheckAndTasksArray.CheckArraySecondLimit(a);
 
         var array = workWithArray.Array.RandomGenerationArray(a, b, N, 2);
         workWithArray.Array.PrintArray(array);
 
-        double minElement = array[0];
-        double maxElement = array[0];
-        int indexMax = 0;
-        double maxByModulElement = Math.Abs(array[0]);
-        int sumIndexDotElement = 0;
-        double sumNegativeNumbers = 0;
-        int countIntegerNumb = 0;
+        var sumNegativeNumbersOfArray = CheckAndTasksArray.SumNegativeNumbers(array);
+        var minElement = CheckAndTasksArray.MinElementOfArray(array);
+        var indexOfArrayMaxElement = CheckAndTasksArray.MaxElementIndex(array);
+        var maxByModuleElement = CheckAndTasksArray.MaxByModuleElement(array);
+        var sumIndexPositiveElements = CheckAndTasksArray.SumIndexPositiveElements(array);
+        var countIntegerNumb = CheckAndTasksArray.CountIntegerNumbers(array);
 
-        for (int i = 0; i < array.Length; i++)
-        {
-            if (i != array.Length - 1)
-            {
-                if (array[i + 1] < minElement)
-                {
-                    minElement = array[i + 1];
-                }
-            }
-            if (array[i] < 0) sumNegativeNumbers += array[i];
-            if (array[i] > 0) sumIndexDotElement += i;
-            if (array[i] == Math.Round(array[i])) countIntegerNumb++;
-            if (Math.Abs(array[i]) > maxByModulElement) maxByModulElement = Math.Abs(array[i]);
-            if (array[i] > maxElement)
-            {
-                maxElement = array[i];
-                indexMax = i;
-
-            }
-        }
-        Console.WriteLine($"Cума від’ємних елементів масиву = {Math.Round(sumNegativeNumbers, 3)}\nMінімальний елемент масиву = {minElement}\nНомер (індекс) максимального елемента масиву = {indexMax}\nMаксимальний за модулем елемент масиву {maxByModulElement}\nСума індексів додатних елементів {sumIndexDotElement}\nКількість цілих чисел у масиві {countIntegerNumb}");
+        Console.WriteLine($"Cума від’ємних елементів масиву = {Math.Round(sumNegativeNumbersOfArray, 3)}\nMінімальний елемент масиву = {minElement}\nНомер (індекс) максимального елемента масиву = {indexOfArrayMaxElement}\nMаксимальний за модулем елемент масиву {maxByModuleElement}\nСума індексів додатних елементів {sumIndexPositiveElements}\nКількість цілих чисел у масиві {countIntegerNumb}");
     }
 }
