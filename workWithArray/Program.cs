@@ -1,49 +1,22 @@
 ﻿using System.ComponentModel.Design;
+using System.Runtime.InteropServices;
 using System.Text;
+using workWithArray;
 internal class Program
 {
 
-    private static void RandomGenerationArray(double[] array, int firstLimit, int secondLimit)
-    {
-        Random rnd = new Random();
-        for (int i = 0; i < array.Length; i++)
-        {
-            array[i] = Math.Round(rnd.Next(firstLimit, secondLimit) + rnd.NextDouble(), 2);
-            Console.WriteLine($"array [{i}] = {array[i]}");
-        }
-    }
     private static void Main(string[] args)
     {
+
         Console.OutputEncoding = Encoding.Unicode;
         Console.InputEncoding = Encoding.Unicode;
 
-        bool checkN, checkA, checkB;
-        short N;
-        int a, b;
+        var N = workWithArray.CheckAndTasksArray.CheckSizeOfArray();
+        var a = workWithArray.CheckAndTasksArray.CheckArrayFirstLimit();
+        var b = workWithArray.CheckAndTasksArray.CheckArraySecondLimit(a);
 
-        Console.WriteLine("Введіть розмір масиву(N):");
-        do
-        {
-            checkN = short.TryParse(Console.ReadLine(), out N);
-            if (!checkN || N < 0) Console.WriteLine("Значення N має бути більше нуля та бути числом ");
-        } while (!checkN || N < 0);
-        Console.WriteLine("Зазначте,що елементи у вказаному вами діапазоні будуть згенеровані у матриці дійсного типу,але округленн(до 2 знаків після коми) дасть змогу отримати ціле число");
-        Console.WriteLine("Введіть розмір границі діапазону a - [a;b]");
-        do
-        {
-            checkA = int.TryParse(Console.ReadLine(), out a);
-            if (!checkA) Console.WriteLine("Перевірте чи коректно задано значення a [a;b]");
-        } while (!checkA);
-
-        Console.WriteLine("Введіть розмір границі діапазону b - [a;b]");
-        do
-        {
-            checkB = int.TryParse(Console.ReadLine(), out b);
-            if (!checkB || b <= a) Console.WriteLine("Перевірте чи коректно задано значення b [a;b]");
-        } while (!checkA || b <= a);
-
-        double[] array = new double[N];
-        RandomGenerationArray(array, a, b);
+        var array = workWithArray.Array.RandomGenerationArray(a, b, N, 2);
+        workWithArray.Array.PrintArray(array);
 
         double minElement = array[0];
         double maxElement = array[0];
